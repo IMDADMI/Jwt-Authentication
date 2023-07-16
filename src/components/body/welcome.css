@@ -1,0 +1,7 @@
+.sizing p:first-child{
+    font-size:  1.9rem;
+}
+
+.sizing p{
+    font-size: 1.3rem;
+}
