@@ -20,14 +20,14 @@ export default function Response() {
   }
   const getResponse =async ()=>{
     const accessToken = Cookies.get('access-token')
-    const tokenHeader = {"Authorization":"Bearer "+accessToken}
-    const res = await axios.get('locahost:8080/users',{},{headers:tokenHeader});
+    const tokenHeader = {Authorization:`Bearer ${accessToken}`}
+    const res = await axios.get('http://localhost:8080/users',{headers:tokenHeader});
     return res;
   }
   useEffect(async () => {
     //
-    const result = getResponse();
-    if(result.data.status === 401){
+    const result = await getResponse();
+    if(result.status === 401){
       requestAccessToken()
       const res = await getResponse();
       setData(res.data);
