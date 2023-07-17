@@ -1,18 +1,27 @@
 import { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/headers/Header';
 import Welcome from './components/body/Welcome';
-import LogingHeader from './components/body/LogingHeader.JSX';
-import Authentication from './components/body/Authentication';
-function App() {
 
+import Headers from './components/Headers';
+import Authentication from './components/body/Authentication';
+import Response from './components/body/Response';
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider} from 'react-router-dom'
+function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path='/' element={<Headers/>}>
+        <Route index element={<Welcome/>}/>
+        <Route path='authentication' element={<Authentication/>}/>
+        <Route path='response' element={<Response/>}/>
+      </Route>
+    )
+  );
   return (
-    <>
-      <Header/>
-      <LogingHeader/>
-      {/* <Welcome/> */}
-    <Authentication/>
-    </>
+   <RouterProvider router={router}/>
   )
 }
 
