@@ -61,11 +61,24 @@ export default function Response() {
 
 
   return (
-      <div>
-        <h2 className='container'>Listing of users : </h2>
-        <ul>
-          {data.map(user=><li key={user.id}>{user.username}</li>)}
-        </ul>
+      <div className='container'>
+        <h2 className=''>Listing of users : </h2>
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Username</th>
+            </tr>
+          </thead>
+          <tbody>
+          {data.map(user=>
+            <tr key={user.id}>
+              <th scope="row">{user.id}</th>
+              <td>{user.username}</td>
+            </tr>
+            )}
+          </tbody>
+        </table>
       </div>
   )
 }

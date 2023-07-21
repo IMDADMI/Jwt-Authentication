@@ -7,7 +7,7 @@ export default class Authentication extends Component {
     const refreshToken = Cookies.get('refresh-token');
     if(refreshToken)
       window.location.replace("/response"); 
-        
+
     super(props);
     this.state = {
       isRegistration:false,
@@ -29,36 +29,25 @@ export default class Authentication extends Component {
     event.preventDefault();
     if(this.state.isRegistration){
       const credentials = {username:this.state.username,password:this.state.password}
-      
       const res = await axios.post("http://localhost:8080/register/user",credentials);
-      // const res = await axios.post("http://localhost:8080/boom",credentials)
       if(res.status === 200)
         window.location.replace("/");
-      
-      //send request to /registration to create a new user
     }else{
-      // const h = new Headers();
-      const credentials = {username:this.state.username,password:this.state.password}
-      console.log(credentials);
-      const res = await axios.post("http://localhost:8080/user/login",credentials); 
-      console.log('the result is : ',res);
-      const refreshToken = res.data.refreshToken;
-      const accessToken = res.data.accessToken;
-      console.log(res.data); 
-      console.log('refresh token is : ',refreshToken);
-      console.log('access token is : ',accessToken);
+      try{
+        const credentials = {username:this.state.username,password:this.state.password}
+        const res = await axios.post("http://localhost:8080/user/login",credentials); 
+        const refreshToken = res.data.refreshToken;
+        const accessToken = res.data.accessToken;
+        Cookies.set('access-token', accessToken, { expires: 60*5});//5min
+        Cookies.set('refresh-token', refreshToken, { expires: 30*(60*60*24)});//30days
 
-      Cookies.set('access-token', accessToken, { expires: 60*5});//5min
-      Cookies.set('refresh-token', refreshToken, { expires: 30*(60*60*24)});//30days
-
-
-      console.log(Cookies.get('access-token'));
-      console.log(Cookies.get('refresh-token'));
-
-      window.location.replace("/response");
-      
-      // const name = Cookies.get('name');
-      // Cookies.remove('name');
+        window.location.replace("/response");
+      }catch(e){
+        if(e.response.status === 403){
+          alert('invalid credentials');
+          this.setState({username:'',password:''});
+        }
+      }
     }
   }
   render() {
