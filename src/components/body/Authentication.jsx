@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
-import { NavLink} from 'react-router-dom';
+import { NavLink, redirect} from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 export default class Authentication extends Component {
   constructor(props){
+    const refreshToken = Cookies.get('refresh-token');
+    if(refreshToken)
+      window.location.replace("/response"); 
+        
     super(props);
     this.state = {
       isRegistration:false,
@@ -14,6 +18,7 @@ export default class Authentication extends Component {
     }
   }
   
+
   onLoginClick = ()=>{
     this.setState({isRegistration:false});
   }

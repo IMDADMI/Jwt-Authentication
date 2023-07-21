@@ -17,7 +17,9 @@ export default class
     const credentials = {username,password}
   
     try{
-      const res2 = await axios.get('http://localhost:8080/user/list',{ headers: {"Authorization" : `Bearer`}});
+      // const res2 = await axios.get('http://localhost:8080/user/list',{ headers: {"Authorization" : `Bearer`}});
+      const res = await axios.get('http://localhost:8080/token/refresh',{headers: {"Authorization" : `Bearer `}})
+      console.log(res);
       // const response = await axios.post("http://localhost:8080/boom",credentials)
       // const res2 = await axios.post("http://127.0.0.1:8080/test/postUser",credentials)
       // console.log(response);
@@ -29,7 +31,7 @@ export default class
     }
     return (
     <div className='m-4 sizing'>
-      {/* <button className='btn btn-danger' onClick={sendRequest}>send request</button> */}
+      <button className='btn btn-danger' onClick={sendRequest}>send request</button>
       <p className='font-weight-bold'>Welcome</p>
       <p className='font-weight-light'>Login to see protected content</p>
     </div>
