@@ -23,7 +23,7 @@ some screens of the App
  
 
 ## Demo
-this app is bootstrapped by vite which 
+this app is bootstrapped by vite, 
 To start the application run the npm cmd to install the necessary packages:
 ```bash
   npm install
