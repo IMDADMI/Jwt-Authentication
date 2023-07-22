@@ -8,7 +8,7 @@ export default function Response() {
   const [data,setData] = useState([]);                                    
   
   const requestAccessToken = async (refreshToken)=>{
-    
+    console.log(refreshToken);
     // const refreshToken = Cookies.get('refresh-token')
     if(refreshToken){
       try{
@@ -40,7 +40,7 @@ export default function Response() {
           setData(res.data);
         return res;
       }catch(error){
-          console.log('this is the dummy error',error);
+
           return null;
       }
     }else
