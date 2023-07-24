@@ -1,9 +1,9 @@
 
 # JWT Authentication System
 
-this is a simple authentication form using react and jwt using spring security. you can find the backend part in the Jwt-Authentication-spring-security repository.
+this is a simple authentication form using react and jwt using spring security.
 ### You can view the backend part in the repository **Jwt-Authentication-Spring-Security** 
-
+####note that the tokens are stored using cookies (universal-cookie)####
 
 
 ## App screens
