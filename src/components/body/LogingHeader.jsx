@@ -1,12 +1,10 @@
 import { Button } from 'bootstrap'
-import Cookies from 'js-cookie'
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-
+import {destroyTokens} from '../../helper/helper'
 export default class LogingHeader extends Component {
   removeTokens = ()=>{
-    Cookies.remove('access-token');
-    Cookies.remove('refresh-token');
+    destroyTokens();
     window.location.replace("/"); 
   } 
   render() {
