@@ -1,14 +1,38 @@
 import React, { Component } from 'react'
 import './welcome.css'
 import axios from 'axios'
-import Cookies from 'js-cookie';
+import Cookies from 'universal-cookie';
+import { destroyTokens, request } from '../../helper/helper';
 export default class 
  extends Component {
+  componentDidMount(){
+    const cookie = new Cookies();
+    cookie.addChangeListener((name,value,option)=>{
+      console.log('samaikom ',name,value,option);
+    });
+  }
   render() {
     const sendRequest = async ()=>{
 // ***************************************************************************************************************************************
-        //                      this for testing purposes uncomment the button and make you actions
+//                      this for testing purposes uncomment the button and make you actions
 // ***************************************************************************************************************************************
+      // const cookie = new Cookies();
+      // const res = request("GET",'/user/test',{});
+      // const res2 = await axios.get('http://localhost:8080/user/test');
+        // console.log(res2);
+        // destroyTokens();
+        // Cookies.set('key','value',{maxAge:60});
+        // cookie.set('key','value',{maxAge:60});
+        // console.log( Cookies.get('access-token'));
+        // console.log(   cookie.get('key'));
+        // request('GET','/users/list',{}).then((response)=>{
+        //   console.log(response.data);
+        //   setData(response.data);
+        // }).catch(e=>{
+        //   console.log(e.response.status);
+        // });
+        // console.log( Cookies.get('refresh-token'));
+      
         // Cookies.set('user','ADMI',60);
         // setTimeout(() => {
         //   console.log(Cookies.get('user'));
